@@ -1,0 +1,57 @@
+<section>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <img class="logo" src="./assets/logo.jpg" alt="Parc.APP" />
+            </div>
+
+            <div class="col-xl-4 col-lg-6 mt-5">
+                <form #main="ngForm" class="d-flex flex-column" (submit)="main.form.valid && calcularParcelas();">
+                    <div class="d-flex flex-column">
+                        <span>Valor:</span>
+                        <input 
+                            type="text"
+                            name="valor"
+                            id="valor" 
+                            #email="ngModel"
+                            [(ngModel)]="valor" 
+                            required="true"
+                            currencyMask
+                            [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left' }"
+                            autocomplete="off"
+                        />
+                    </div>
+                    <div class="d-flex flex-column">
+                        <span>Número de parcelas:</span>
+                        <input 
+                            type="number"
+                            name="numeroParcelas"
+                            id="numeroParcelas"
+                            #email="ngModel"
+                            [(ngModel)]="numeroParcelas"
+                            required="true"
+                        />
+                    </div>
+                    <input class="btn" type="submit" value="CALCULAR" />
+                </form>
+            </div>
+            <div class="col-xl-4 col-lg-6 mt-5" *ngIf="parcelas.length > 0">
+                <span>Resultado:</span>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                        <th scope="col">Parcela</th>
+                        <th scope="col">Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let parcela of parcelas">
+                            <th scope="row">{{ parcela.parcela }}</th>
+                            <td>{{ parcela.valor.toLocaleString('pt-br', formatoReal) }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
