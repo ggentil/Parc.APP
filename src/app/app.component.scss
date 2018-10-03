@@ -44,8 +44,25 @@ input[type="number"], input[type="text"] {
     height: 40px;
     transition: all .3s ease-in-out;
 
-    &:focus, :hover {
+    &:hover, &:focus {
         background-color: #d4548d;
         border-color: #ff75b3;
+        cursor: pointer;
+    }
+}
+
+.radiobox {
+    align-items: center;
+
+    input {
+        margin-right: 5px;
+    }
+
+    span {
+        margin-right: 20px;
+    }
+
+    label:hover {
+        cursor: pointer;
     }
 }
