@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "parcepp": {
+    "parcapp": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/parcepp",
+            "outputPath": "dist/parcapp",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -60,18 +60,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "parcepp:build"
+            "browserTarget": "parcapp:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "parcepp:build:production"
+              "browserTarget": "parcapp:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "parcepp:build"
+            "browserTarget": "parcapp:build"
           }
         },
         "test": {
@@ -105,7 +105,7 @@
         }
       }
     },
-    "parcepp-e2e": {
+    "parcapp-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -113,11 +113,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "parcepp:serve"
+            "devServerTarget": "parcapp:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "parcepp:serve:production"
+              "devServerTarget": "parcapp:serve:production"
             }
           }
         },
@@ -133,5 +133,5 @@
       }
     }
   },
-  "defaultProject": "parcepp"
+  "defaultProject": "parcapp"
 }
