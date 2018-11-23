@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 enum modos {
     arredondado = "arredondado",
     diluido = "diluido"
-}
+};
 
 @Component({
     selector: 'app-root',
@@ -21,37 +21,42 @@ export class AppComponent {
     constructor() {}
 
     calcularParcelas() {
-        this.modo == modos.arredondado ? 
-            this.calcularParcelasArredondado() : 
-            this.calcularParcelasDiluido(); 
+        this.parcelas = this.modo == modos.arredondado ? 
+                            this.calcularParcelasArredondado(this.valor, this.numeroParcelas) : 
+                            this.calcularParcelasDiluido(this.valor, this.numeroParcelas); 
     };
 
-    calcularParcelasArredondado() {
-        this.parcelas = [];
+    calcularParcelasArredondado(valor: number, numeroParcelas: number): Array<any> {
+        let parcelas = [],
+            valorInteiro = Math.floor(valor);
+
+        while (valorInteiro % numeroParcelas != 0) 
+            valorInteiro--;
         
-        let valorInteiro = Math.floor(this.valor);
-        while (valorInteiro % this.numeroParcelas != 0) valorInteiro--;
+        let diferenca = (valor - valorInteiro),
+            parcela = valorInteiro / numeroParcelas;
         
-        let diferenca = (this.valor - valorInteiro),
-            parcela = valorInteiro / this.numeroParcelas;
-        
-        for (let index = 1; index <= this.numeroParcelas; index++) {
-            this.parcelas.push({
+        for (let index = 1; index <= numeroParcelas; index++) {
+            parcelas.push({
                 parcela: index,
                 valor: index == 1 ? parcela + diferenca : parcela
             });
         };
+
+        return parcelas;
     };
 
-    calcularParcelasDiluido() {
-        this.parcelas = [];
-        
-        let parcela = this.valor / this.numeroParcelas;
-        for (let index = 1; index <= this.numeroParcelas; index++) {
-            this.parcelas.push({
+    calcularParcelasDiluido(valor: number, numeroParcelas: number): Array<any> {
+        let parcelas = [],
+            parcela = valor / numeroParcelas;
+
+        for (let index = 1; index <= numeroParcelas; index++) {
+            parcelas.push({
                 parcela: index,
                 valor: parcela
             });
         };
+
+        return parcelas;
     }
-}
+};

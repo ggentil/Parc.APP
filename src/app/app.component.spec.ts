@@ -34,11 +34,31 @@ describe('AppComponent', () => {
         expect(app.modo).toEqual('arredondado');
     }));
 
-    it('deve renderizar os campos "texts" para inserção de dados', async(() => {
+    it('Deve renderizar os campos "texts" para inserção de dados', async(() => {
         const fixture = TestBed.createComponent(AppComponent);
         fixture.detectChanges();
         const compiled = fixture.debugElement.nativeElement;
         expect(compiled.querySelector('#valor') && compiled.querySelector('#numeroParcelas')).toBeTruthy();
+    }));
+
+    it("Teste de cálculo de parcelas arredondadas", async(() => {
+        const fixture = TestBed.createComponent(AppComponent);
+        const app = fixture.debugElement.componentInstance;
+        expect(app.calcularParcelasArredondado(1530.26, 3)).toEqual([
+            { parcela: 1, valor: 510.26 },
+            { parcela: 2, valor: 510 },
+            { parcela: 3, valor: 510 }
+        ]);
+    }));
+
+    it("Teste de cálculo de parcelas diluídas", async(() => {
+        const fixture = TestBed.createComponent(AppComponent);
+        const app = fixture.debugElement.componentInstance;
+        expect(app.calcularParcelasDiluido(1530.26, 3)).toEqual([
+            { parcela: 1, valor: 510.08666666666664 },
+            { parcela: 2, valor: 510.08666666666664 },
+            { parcela: 3, valor: 510.08666666666664 }
+        ]);
     }));
 
 });
