@@ -27,14 +27,14 @@ export class AppComponent {
     };
 
     calcularParcelasArredondado(valor: number, numeroParcelas: number): Array<any> {
-        let parcelas = [],
-            valorInteiro = Math.floor(valor);
+        let parcelas: Array<any> = [],
+            valorInteiro: number = Math.floor(valor);
 
         while (valorInteiro % numeroParcelas != 0) 
             valorInteiro--;
         
-        let diferenca = (valor - valorInteiro),
-            parcela = valorInteiro / numeroParcelas;
+        let diferenca: number = (valor - valorInteiro),
+            parcela: number = valorInteiro / numeroParcelas;
         
         for (let index = 1; index <= numeroParcelas; index++) {
             parcelas.push({
@@ -47,10 +47,10 @@ export class AppComponent {
     };
 
     calcularParcelasDiluido(valor: number, numeroParcelas: number): Array<any> {
-        let parcelas = [],
-            parcela = valor / numeroParcelas;
+        let parcelas: Array<any> = [],
+            parcela: number = valor / numeroParcelas;
 
-        for (let index = 1; index <= numeroParcelas; index++) {
+        for (let index: number = 1; index <= numeroParcelas; index++) {
             parcelas.push({
                 parcela: index,
                 valor: parcela
